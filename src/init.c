@@ -23,3 +23,27 @@ int write_file(char* path, char* content){
     fclose(fp);
     return 0;
 }
+
+int git(){
+    
+    char *dirs[] = {
+        ".git",
+        ".git/objects",
+        ".git/refs",
+        ".git/refs/heads"
+    };
+
+    for(int i=0; i< sizeof(dirs)/sizeof(dirs[0]); i++){
+        if(make_dir(dirs[i]) == -1){
+            return -1;
+        }
+    }
+
+    if(write_file(".git/HEAD", "Branch: Master\n") == -1){
+        return -1;
+    }
+
+    printf("Initialized empty Mini-Git repository in .git/\n");
+    return 0;
+
+}
