@@ -1,6 +1,6 @@
 CC = gcc
 SRC = main.c \
-src\init.c  
+src/init.c  
 
 OUT = init
 

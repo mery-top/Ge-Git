@@ -11,6 +11,7 @@ int main(int argc, char* argv[]){
 
     if(strcmp(argv[1], "init") == 0){
         git_init();
+        return 0;
     }
 
     printf("Unknown command: %s\n", argv[1]);

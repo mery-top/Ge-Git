@@ -6,7 +6,7 @@
 
 int make_dir(char* path){
     if(mkdir(path, 0755) == -1){
-        perror("mkdir error");
+        perror("Directory Already Exists");
         return -1;
     }
     return 0;
@@ -24,13 +24,13 @@ int write_file(char* path, char* content){
     return 0;
 }
 
-int git(){
+int git_init(){
     
     char *dirs[] = {
-        ".git",
-        ".git/objects",
-        ".git/refs",
-        ".git/refs/heads"
+        ".gegit",
+        ".gegit/objects",
+        ".gegit/refs",
+        ".gegit/refs/heads"
     };
 
     for(int i=0; i< sizeof(dirs)/sizeof(dirs[0]); i++){
@@ -39,11 +39,11 @@ int git(){
         }
     }
 
-    if(write_file(".git/HEAD", "Branch: Master\n") == -1){
+    if(write_file(".gegit/HEAD", "Branch: Master\n") == -1){
         return -1;
     }
 
-    printf("Initialized empty Mini-Git repository in .git\n");
+    printf("Initialized empty Mini-Git repository in .gegit\n");
     return 0;
 
 }
