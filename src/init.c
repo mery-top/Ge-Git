@@ -43,7 +43,7 @@ int git(){
         return -1;
     }
 
-    printf("Initialized empty Mini-Git repository in .git/\n");
+    printf("Initialized empty Mini-Git repository in .git\n");
     return 0;
 
 }
