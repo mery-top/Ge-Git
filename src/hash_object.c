@@ -5,7 +5,6 @@
 #include "../include/hash_object.h"
 #include "../include/utils.h"
 
-
 int hash_object(char* filename){
     FILE *fp = fopen(filename, "rb");
     if(!fp){
@@ -33,7 +32,6 @@ int hash_object(char* filename){
     printf("Blob created successfully\n");
     char* hash = sha_hash(blob, blob_size);
     save_blob(hash, blob, blob_size);
-    printf("Blob saved successfully\n");
     free(content);
     free(blob);
     fclose(fp);

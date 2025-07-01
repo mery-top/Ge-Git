@@ -45,5 +45,4 @@ int save_blob(char* hash, char* blob, long size){
     fclose(fp);
     printf("File wrote successfully at %s\n", fullpath);
     return 0;
-
 }
