@@ -26,7 +26,7 @@ int hash_object(char* filename){
     char* blob = malloc(blob_size);
 
     memcpy(blob, header, header_length);
-    blob[strlen(header)] = "\0";
+    blob[strlen(header)] = '\0';
     memcpy(blob+header_length+1, content, size);
 
     printf("Blob created successfully\n");
