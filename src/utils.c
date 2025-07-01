@@ -11,7 +11,7 @@ char* sha_hash(char* blob, long size){
     SHA1((unsigned char*)blob, size, sha);
     char* hash = malloc(41);
     for(int i=0; i<SHA_DIGEST_LENGTH; i++){
-        snprintf(&hash[i*2], "%02x", sha[i]);
+        sprintf(&hash[i*2], "%02x", sha[i]);
     }
     hash[40] ='\0';
     printf("Hash: %s\n", hash);
@@ -26,14 +26,14 @@ int save_blob(char* hash, char* blob, long size){
     strncpy(dir, hash, 2);
     dir[2] = '\0';
     strncpy(file, hash+2, 38);
-    dir[39] = '\0';
+    file[38] = '\0';
 
     char dir_path[64];
-    snprintf(dir_path, ".gegit/objects/%s", dir);
+    sprintf(dir_path, ".gegit/objects/%s", dir);
     mkdir(dir_path, 0755);
 
     char fullpath[128];
-    snprintf(fullpath, "%s/%s", dir_path, file);
+    sprintf(fullpath, "%s/%s", dir_path, file);
 
     FILE *fp = fopen(fullpath, "wb");
     if(!fp){

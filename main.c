@@ -4,7 +4,7 @@
 #include "include/hash_object.h"
 
 int main(int argc, char* argv[]){
-    if(argc <3){
+    if(argc <2){
         printf("Usage: git<command>\n");
         return 1;
     }
@@ -12,8 +12,8 @@ int main(int argc, char* argv[]){
     if(strcmp(argv[1], "init") == 0){
         git_init();
         return 0;
-    }else if(strcmp(argv[1], "init") == 0){
-        hash_object("/Users/meerthikasr/Desktop/Ge-Git/hello.txt");
+    }else if(strcmp(argv[1], "hash-object") == 0){
+        hash_object("hello.txt");
         return 0;
     }
 
