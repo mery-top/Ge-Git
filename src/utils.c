@@ -34,6 +34,16 @@ int save_blob(char* hash, char* blob, long size){
 
     char fullpath[128];
     snprintf(fullpath, "%s/%s", dir_path, file);
-    
+
+    FILE *fp = fopen(fullpath, "wb");
+    if(!fp){
+        perror("file open error");
+        return 1;
+    }
+
+    fwrite(blob, 1, size, fp);
+    fclose(fp);
+    printf("File wrote successfully at %s\n", fullpath);
+    return 0;
 
 }
