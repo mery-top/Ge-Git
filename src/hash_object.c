@@ -7,7 +7,14 @@
 
 int hash_object(char* blob, long size){
     unsigned char sha[SHA_DIGEST_LENGTH];
-    SHA1((unsigned char))
+    SHA1((unsigned char*)blob, size, sha);
+    char hash[41];
+    for(int i=0; i<SHA_DIGEST_LENGTH; i++){
+        snprintf(&hash[i*2], "%02x", sha[i]);
+    }
+    hash[40] ="\0";
+    printf("Hash: %s\n", hash);
+    return 0;
 }
 
 int blob_create(char* filename){
