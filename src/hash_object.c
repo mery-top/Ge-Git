@@ -2,24 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "hash_object.h"
-#include <openssl/sha.h>
+#include "../include/hash_object.h"
+#include "../include/utils.h"
 
-char* sha_hash(char* blob, long size){
-    unsigned char sha[SHA_DIGEST_LENGTH];
-    SHA1((unsigned char*)blob, size, sha);
-    char* hash = malloc(41);
-    for(int i=0; i<SHA_DIGEST_LENGTH; i++){
-        snprintf(&hash[i*2], "%02x", sha[i]);
-    }
-    hash[40] ='\0';
-    printf("Hash: %s\n", hash);
-    return hash;
-}
-
-int save_blob(char* hash, char* blob, long size){
-    
-}
 
 int hash_object(char* filename){
     FILE *fp = fopen(filename, "rb");
@@ -47,6 +32,8 @@ int hash_object(char* filename){
 
     printf("Blob created successfully\n");
     char* hash = sha_hash(blob, blob_size);
+    save_blob(hash, blob, blob_size);
+    printf("Blob saved successfully\n");
     free(content);
     free(blob);
     fclose(fp);
