@@ -26,11 +26,14 @@ void write_tree(char* dir_path, char* tree_sha_hash){
         char* content = NULL;
         long size = 0;
         
-        if (read_file_content(filename, &content, &size) != 0) {
+        if (read_file_content(full_path, &content, &size) != 0) {
             return 1; 
         }
 
-        
+        char blob_sha[41];
+        write_object("blob", content, size, blob_sha);
+        free(content);
+
 
     }
 
