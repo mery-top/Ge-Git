@@ -5,7 +5,7 @@
 #include "../include/hash_object.h"
 #include "../include/utils.h"
 
-char* hash_object(char* filename){
+int hash_object(char* filename){
     FILE *fp = fopen(filename, "rb");
     if(!fp){
         perror("file open error");
@@ -19,11 +19,14 @@ char* hash_object(char* filename){
     char *content = malloc(size);
     fread(content, 1, size, fp);
 
+    char hash[41];
+    write_object("blob", content, size, hash);
     
-    printf("Blob created successfully\n");
+    printf("Hash:%s\n", hash);
     
+
     free(content);
     fclose(fp);
 
-    return hash;
+    return 0;
 }

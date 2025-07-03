@@ -1,3 +1,3 @@
 #pragma once
 
-char* hash_object(char* filename);
+int hash_object(char* filename);
