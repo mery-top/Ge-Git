@@ -6,18 +6,15 @@
 #include <openssl/sha.h>
 #include "../include/utils.h"
 
-char* sha_hash(char* blob, long size){
+void sha_hash(char* blob, long size, char* hash){
     unsigned char sha[SHA_DIGEST_LENGTH];
     SHA1((unsigned char*)blob, size, sha);
-    char* hash = malloc(41);
     for(int i=0; i<SHA_DIGEST_LENGTH; i++){
         sprintf(&hash[i*2], "%02x", sha[i]);
     }
     hash[40] ='\0';
     printf("Hash: %s\n", hash);
-    return hash;
 }
-
 
 int save_blob(char* hash, char* blob, long size){
     char dir[3];
@@ -46,3 +43,23 @@ int save_blob(char* hash, char* blob, long size){
     printf("File wrote successfully at %s\n", fullpath);
     return 0;
 }
+
+
+void write_object(char* type, char* content, long data_size, char* sha_hash){
+    char header[64];
+    sprintf(header, "%s %ld",type, size);
+    long header_length = strlen(header);
+    long blob_size = header_length+1+data_size;
+    char* blob = malloc(blob_size);
+
+    memcpy(blob, header, header_length);
+    blob[header_length] = '\0';
+    memcpy(blob+header_length+1, content, size);
+
+    printf("Blob created successfully\n");
+    sha_hash(blob, blob_size,sha_hash);
+    save_blob(sha_hash, blob, blob_size);
+}
+
+
+
