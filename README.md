@@ -60,6 +60,8 @@ Ge-Git/
 ### 🟢 Initialize repository
 
 ```bash
+make
+
 ./gegit init
 
 📦 Hash a file as a blob
