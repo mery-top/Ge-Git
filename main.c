@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
         write_tree(".", sha1);
         printf("tree: %s\n", sha1);
     }else if(strcmp(argv[1], "commit") == 0){
-        if(argv <3){
+        if(argc <3){
             printf("Usage: git commit <message>\n");
             return 1;
         }
@@ -31,14 +31,10 @@ int main(int argc, char* argv[]){
 
         write_commit(tree_hash, argv[2], commit_hash);
         printf("commit: %s\n", commit_hash);
-    }eles{
+    }else{
         printf("Unknown command: %s\n", argv[1]);
         return 1;
     }
 
-    
-
     return 0;
 }
-
-// printf("Unknown command: %s\n", argv[1]);

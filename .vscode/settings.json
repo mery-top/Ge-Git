@@ -3,6 +3,18 @@
     "files.associations": {
         "hash_object.h": "c",
         "utils.h": "c",
-        "tree.h": "c"
+        "tree.h": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "bitset": "c",
+        "deque": "c",
+        "initializer_list": "c",
+        "queue": "c",
+        "stack": "c",
+        "string": "c",
+        "string_view": "c",
+        "unordered_map": "c",
+        "vector": "c"
     }
 }

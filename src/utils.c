@@ -6,7 +6,7 @@
 #include <openssl/sha.h>
 #include "../include/utils.h"
 
-void sha_hash(char* blob, long size, char* hash){
+void sha_hashed(char* blob, long size, char* hash){
     unsigned char sha[SHA_DIGEST_LENGTH];
     SHA1((unsigned char*)blob, size, sha);
     for(int i=0; i<SHA_DIGEST_LENGTH; i++){
@@ -47,21 +47,21 @@ int save_blob(char* hash, char* blob, long size){
 
 void write_object(char* type, char* content, long data_size, char* sha_hash){
     char header[64];
-    sprintf(header, "%s %ld",type, size);
+    sprintf(header, "%s %ld",type, data_size);
     long header_length = strlen(header);
     long blob_size = header_length+1+data_size;
     char* blob = malloc(blob_size);
 
     memcpy(blob, header, header_length);
     blob[header_length] = '\0';
-    memcpy(blob+header_length+1, content, size);
+    memcpy(blob+header_length+1, content, data_size);
 
-    sha_hash(blob, blob_size,sha_hash);
+    sha_hashed(blob, blob_size,sha_hash);
     save_blob(sha_hash, blob, blob_size);
     free(blob);
 }
 
-void read_file_content(char* filename, char* content, long* size){
+int read_file_content(char* filename, char** content, long* size){
     FILE *fp = fopen(filename, "rb");
     if(!fp){
         perror("file open error");
@@ -69,11 +69,12 @@ void read_file_content(char* filename, char* content, long* size){
     }
 
     fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
+    *size = ftell(fp);
     rewind(fp);
 
-    content = malloc(size);
-    fread(content, 1, size, fp);
+    *content = malloc(*size);
+    fread(*content, 1, *size, fp);
+    return 0;
 }
 
 

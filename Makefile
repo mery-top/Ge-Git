@@ -2,7 +2,9 @@ CC = gcc
 SRC = main.c \
 src/init.c \
 src/hash_object.c \
-src/utils.c
+src/utils.c \
+src/commit.c \
+src/tree.c
 
 OPENSSL_PREFIX = /opt/homebrew/opt/openssl@3
 
@@ -18,3 +20,4 @@ run:
 
 clean:
 	rm -f $(OUT)
+	rm -r .gegit

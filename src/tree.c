@@ -27,7 +27,8 @@ void write_tree(char* dir_path, char* tree_sha_hash){
         long size = 0;
         
         if (read_file_content(full_path, &content, &size) != 0) {
-            return 1; 
+            perror("error read file");
+            return; 
         }
 
         char blob_sha[41];
