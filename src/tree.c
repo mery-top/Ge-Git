@@ -20,6 +20,16 @@ void write_tree(char* dir_path, char* tree_sha_hash){
             continue;
         }
 
+        char full_path[512];
+        snprintf(full_path, sizeof(full_path), "%s/%s", dir_path, entry->d_name);
+
+        char* content = NULL;
+        long size = 0;
+        
+        if (read_file_content(filename, &content, &size) != 0) {
+            return 1; 
+        }
+
         
 
     }

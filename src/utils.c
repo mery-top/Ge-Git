@@ -56,10 +56,24 @@ void write_object(char* type, char* content, long data_size, char* sha_hash){
     blob[header_length] = '\0';
     memcpy(blob+header_length+1, content, size);
 
-    printf("Blob created successfully\n");
     sha_hash(blob, blob_size,sha_hash);
     save_blob(sha_hash, blob, blob_size);
     free(blob);
+}
+
+void read_file_content(char* filename, char* content, long* size){
+    FILE *fp = fopen(filename, "rb");
+    if(!fp){
+        perror("file open error");
+        return 1;
+    }
+
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    rewind(fp);
+
+    content = malloc(size);
+    fread(content, 1, size, fp);
 }
 
 

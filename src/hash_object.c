@@ -6,18 +6,12 @@
 #include "../include/utils.h"
 
 int hash_object(char* filename){
-    FILE *fp = fopen(filename, "rb");
-    if(!fp){
-        perror("file open error");
-        return 1;
+    char* content = NULL;
+    long size = 0;
+    
+    if (read_file_content(filename, &content, &size) != 0) {
+        return 1; 
     }
-
-    fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
-    rewind(fp);
-
-    char *content = malloc(size);
-    fread(content, 1, size, fp);
 
     char hash[41];
     write_object("blob", content, size, hash);
