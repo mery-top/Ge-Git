@@ -12,7 +12,7 @@ void write_tree(char* dir_path, char* tree_sha_hash){
         return;
     }
 
-    char tree_dir[8194] = {0};
+    char tree_data[8194] = {0};
     struct dirent *entry;
 
     while((entry = readdir(dir)) !=NULL){
@@ -34,7 +34,11 @@ void write_tree(char* dir_path, char* tree_sha_hash){
         write_object("blob", content, size, blob_sha);
         free(content);
 
-
+        char line[512];
+        snprintf(line, sizeof(line), "10644 %s %s\n", entry->d_name, blob_sha);
+        strcat(tree_data, line);
     }
 
+    closedir(dir);
+    write_object("tree", tree_data, strlen(tree_data), tree_sha_hash);
 }
