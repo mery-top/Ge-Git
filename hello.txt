@@ -1,3 +1,1 @@
-~/Desktop/Ge-Git $ git commit -m "[Add] time in commit msg"
-[master cfa949d] [Add] time in commit msg
- 1 file changed, 13 insertions(+)
+Hi, This is a test file in the home
