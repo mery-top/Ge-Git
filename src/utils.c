@@ -59,6 +59,7 @@ void write_object(char* type, char* content, long data_size, char* sha_hash){
     printf("Blob created successfully\n");
     sha_hash(blob, blob_size,sha_hash);
     save_blob(sha_hash, blob, blob_size);
+    free(blob);
 }
 
 

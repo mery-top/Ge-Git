@@ -19,21 +19,10 @@ char* hash_object(char* filename){
     char *content = malloc(size);
     fread(content, 1, size, fp);
 
-    char header[64];
-    sprintf(header, "blob %ld", size);
-    long header_length = strlen(header);
-    long blob_size = header_length+1+size;
-    char* blob = malloc(blob_size);
-
-    memcpy(blob, header, header_length);
-    blob[strlen(header)] = '\0';
-    memcpy(blob+header_length+1, content, size);
-
+    
     printf("Blob created successfully\n");
-    char* hash = sha_hash(blob, blob_size);
-    save_blob(hash, blob, blob_size);
+    
     free(content);
-    free(blob);
     fclose(fp);
 
     return hash;
