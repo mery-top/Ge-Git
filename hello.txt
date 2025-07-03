@@ -1,1 +1,3 @@
-Hi, This is my git hash-object file.
+~/Desktop/Ge-Git $ git commit -m "[Add] time in commit msg"
+[master cfa949d] [Add] time in commit msg
+ 1 file changed, 13 insertions(+)
