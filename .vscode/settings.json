@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "hash_object.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "tree.h": "c"
     }
 }
