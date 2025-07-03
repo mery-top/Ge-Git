@@ -18,7 +18,6 @@ int hash_object(char* filename){
     
     printf("Hash:%s\n", hash);
     
-
     free(content);
     fclose(fp);
 
