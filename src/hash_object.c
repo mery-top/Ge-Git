@@ -5,7 +5,7 @@
 #include "../include/hash_object.h"
 #include "../include/utils.h"
 
-int hash_object(char* filename){
+char* hash_object(char* filename){
     FILE *fp = fopen(filename, "rb");
     if(!fp){
         perror("file open error");
@@ -36,5 +36,5 @@ int hash_object(char* filename){
     free(blob);
     fclose(fp);
 
-    return 0;
+    return hash;
 }
