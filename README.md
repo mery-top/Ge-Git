@@ -1,4 +1,5 @@
-# 🌀 Ge-Git – Build Your Own Git in C
+# Ge-Git – Build Your Own Git in C
+![Ge-Git Logo](logo.png)
 
 **Ge-Git** is a lightweight Git implementation in C that mimics Git's internal object storage system, including support for blob, tree, and commit objects.
 
